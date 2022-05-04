@@ -17,5 +17,7 @@ namespace DTO.AddOrUpdateDto
         public string SeoTitle { get; set; }
         public string SeoUrl { get; set; }
         public DateTime UpdateDate { get; set; }
+        public List<int> CategoryId { get; set; }
+        public List<int> TagId { get; set; }
     }
 }

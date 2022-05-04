@@ -1,4 +1,5 @@
 ﻿using Core.Service;
+using DTO.AddOrUpdateDto;
 using Entity;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,7 @@ namespace Service.IService
 {
     public interface INewsService:IService<News>
     {
+        void AddNews(AddNewsDTO addNews);
+        List<News> GetAllNews();
     }
 }

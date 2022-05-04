@@ -9,5 +9,6 @@ namespace Core.Repository
 {
     public interface INewsRepository:IRepository<News>
     {
+        IQueryable<News> GetAllNews();
     }
 }

@@ -10,12 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Service.IService;
 using Service.Mapping;
 using Service.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -37,11 +32,19 @@ namespace Service
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<ICategoryRepository,CategoryRepository>();
-
+            services.AddScoped<IConstantSeoRepository,ConstantSeoRepository>();
+            services.AddScoped<INewsCategoryRepository,NewsCategoryRepository>();
+            services.AddScoped<INewsRepository,NewsRepository>();
+            services.AddScoped<INewsTagRepository,NewsTagRepository>();
             //service Katmanı
             services.AddScoped(typeof(IService<>), typeof(Service<>));
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<ICategoryService,CategoryService>();
+            services.AddScoped<IConstantSeoService,ConstantSeoService>();
+            services.AddScoped<INewsService,NewsService>();
+            services.AddScoped<INewsTagService,NewsTagService>();
+            services.AddScoped<INewsCategoryService,NewsCategoryService>();
+
         }
     }
 }

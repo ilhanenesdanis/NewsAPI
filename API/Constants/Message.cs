@@ -10,5 +10,13 @@
         public static string CategoryAdded = "Yeni Kategori Eklendi";
         public static string CategoryRemoved = "Kategori Silindi";
         public static string CategoryListed = "Kategoriler Listelendi";
+        //ConstantSeo
+        public static string ConstantSeoListed = "Tüm Seo Parametreleri Listelendi";
+        public static string ConstantSeoAdded = "ConstantSeo Parametresi Eklendi";
+        public static string ConstantSeoUpdated = "ConstantSeo Parametresi Güncellendi";
+        //news
+        public static string NewsListed = "Haberler Listelendi";
+        public static string NewsAdded = "Yeni Haber Eklendi";
+        public static string NewsUpdated = "Haber Güncellendi";
     }
 }

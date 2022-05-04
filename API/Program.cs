@@ -1,4 +1,5 @@
 using API.Filters;
+using Cache;
 using Core.Repository;
 using Core.Service;
 using Core.UnitOfWork;
@@ -20,9 +21,14 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 IWebHostEnvironment environment = builder.Environment;
+
 builder.Services.AddDependencies(configuration);
+builder.Services.AddMemoryCache();
 //FluentValidation  
-builder.Services.AddControllers(options=>options.Filters.Add(new ValidateFilter())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<TagValidator>());
+builder.Services.AddControllers(options=>options.Filters.Add(new ValidateFilter()))
+    .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<TagValidator>())
+    .AddNewtonsoftJson(x=>x.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+builder.Services.AddScoped<ITagService, TagServiceCaching>();
 builder.Services.Configure<ApiBehaviorOptions>(x =>
 {
     x.SuppressModelStateInvalidFilter = true;
