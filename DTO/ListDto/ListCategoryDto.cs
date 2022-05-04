@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.AddOrUpdateDto
+namespace DTO.ListDto
 {
-    public class AddTagDTO : BaseDTO
+    public class ListCategoryDto:BaseDTO
     {
-        public int? Id { get; set; }
         public string Name { get; set; }
         public int LanguageId { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public LanguageDto Language { get; set; }
+        public List<ListNewsCategoryDto> NewsCategories { get; set; }
     }
 }

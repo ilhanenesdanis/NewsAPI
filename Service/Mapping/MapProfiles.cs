@@ -19,6 +19,21 @@ namespace Service.Mapping
             CreateMap<Tag, AddTagDTO>().ReverseMap();
             //Language
             CreateMap<Language, LanguageDto>().ReverseMap();
+            //Category
+            CreateMap<Category,ListCategoryDto>().ReverseMap();
+            CreateMap<Category,AddCategoryDTO>().ReverseMap();
+            //ConstantSeo
+            CreateMap<ConstantSeo,ListConstantSeoDto>().ReverseMap();
+            CreateMap<ConstantSeo,AddConstantSeoDTO>().ReverseMap();
+            //News
+            CreateMap<News,ListNewsDto>().ReverseMap();
+            CreateMap<News,AddNewsDTO>().ReverseMap();
+            //NewsCategory
+            CreateMap<NewsCategory,ListNewsCategoryDto>().ReverseMap();
+            CreateMap<NewsCategory,AddNewsCategoryDTO>().ReverseMap();
+            //NewsTag
+            CreateMap<NewsTag,ListNewsTagDto>().ReverseMap();
+            CreateMap<NewsTag,AddNewsTagDto>().ReverseMap();
         }
     }
 }

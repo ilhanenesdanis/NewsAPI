@@ -10,5 +10,7 @@ namespace Entity
     {
         public string Name { get; set; }
         public List<Tag> Tags { get; set; }
+        public List<Category> Categories { get; set; }
+        public List<ConstantSeo> ConstantSeos { get; set; }
     }
 }

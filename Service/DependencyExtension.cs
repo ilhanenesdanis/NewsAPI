@@ -36,10 +36,12 @@ namespace Service
             //Repository Katmanı
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<ICategoryRepository,CategoryRepository>();
 
             //service Katmanı
             services.AddScoped(typeof(IService<>), typeof(Service<>));
             services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ICategoryService,CategoryService>();
         }
     }
 }

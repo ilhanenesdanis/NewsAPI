@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Tag : Base
+    public class ConstantSeo:Base
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Keyword { get; set; }
+        public string Description { get; set; }
         public int LanguageId { get; set; }
         public Language Language { get; set; }
-        public List<NewsTag> NewsTags { get; set; }
     }
 }
