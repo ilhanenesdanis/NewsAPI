@@ -1,21 +1,11 @@
 using API.Filters;
 using Cache;
-using Core.Repository;
-using Core.Service;
-using Core.UnitOfWork;
-using Data;
-using Data.Repository;
-using Data.UnitOfWork;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Service;
 using Service.IService;
-using Service.Mapping;
 using Service.Service;
 using Service.Validator;
-using System.Reflection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +18,10 @@ builder.Services.AddMemoryCache();
 builder.Services.AddControllers(options=>options.Filters.Add(new ValidateFilter()))
     .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<TagValidator>())
     .AddNewtonsoftJson(x=>x.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+//Cache
 builder.Services.AddScoped<ITagService, TagServiceCaching>();
+builder.Services.AddScoped<ICategoryService, CategoryServiceCache>();
+
 builder.Services.Configure<ApiBehaviorOptions>(x =>
 {
     x.SuppressModelStateInvalidFilter = true;

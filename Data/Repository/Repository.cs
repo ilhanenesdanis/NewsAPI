@@ -1,4 +1,5 @@
 ﻿using Core.Repository;
+using Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly Context _context;
         private readonly DbSet<T> _dbSet;
@@ -60,7 +61,13 @@ namespace Data.Repository
 
         public void Update(T entity)
         {
-           _dbSet.Update(entity);
+            var UpdateEntity = _dbSet.Find(entity.Id);
+            if (UpdateEntity != null)
+            {
+                entity.CreateDate = UpdateEntity.CreateDate;
+                _context.Entry(UpdateEntity).CurrentValues.SetValues(entity);
+            }
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Tag : Base
+    public class Tag : BaseEntity
     {
         public string Name { get; set; }
         public int LanguageId { get; set; }

@@ -18,7 +18,20 @@ namespace Data.UnitOfWork
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            using (var trans=_context.Database.BeginTransaction())
+            {
+                try
+                {
+                    _context.SaveChanges();
+                    trans.Commit();
+                }
+                catch (Exception ex)
+                {
+
+                    trans.Rollback();
+                }
+            }
+           
         }
     }
 }

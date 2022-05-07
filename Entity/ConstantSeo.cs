@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class ConstantSeo:Base
+    public class ConstantSeo:BaseEntity
     {
         public string Title { get; set; }
         public string Keyword { get; set; }

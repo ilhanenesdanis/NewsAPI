@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class NewsTag : Base
+    public class NewsTag : BaseEntity
     {
         public int NewsId { get; set; }
         public News News { get; set; }

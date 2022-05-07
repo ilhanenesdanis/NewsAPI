@@ -10,6 +10,8 @@
         public static string CategoryAdded = "Yeni Kategori Eklendi";
         public static string CategoryRemoved = "Kategori Silindi";
         public static string CategoryListed = "Kategoriler Listelendi";
+        public static string CategoryUpdated = "Kategori Güncellendi";
+        
         //ConstantSeo
         public static string ConstantSeoListed = "Tüm Seo Parametreleri Listelendi";
         public static string ConstantSeoAdded = "ConstantSeo Parametresi Eklendi";

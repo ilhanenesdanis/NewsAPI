@@ -39,9 +39,36 @@ namespace API.Controllers
         {
             var CategoryMapper = _mapper.Map<Category>(categoryDTO);
             _categoryService.Add(CategoryMapper);
-            var result = new ResultDTO<ListCategoryDto>()
+            var result = new ResultDTO<Category>()
             {
+                Data=CategoryMapper,
                 Message = Message.CategoryAdded,
+                Status = true
+            };
+            return Json(result);
+        }
+        [HttpPost("UpdateCategory")]
+        public JsonResult UpdateCategory(AddCategoryDTO addCategory)
+        {
+            var categoryMapper = _mapper.Map<Category>(addCategory);
+            _categoryService.Update(categoryMapper);
+            var result = new ResultDTO<Category>()
+            {
+                Data = categoryMapper,
+                Message = Message.CategoryUpdated,
+                Status = true
+            };
+            return Json(result);
+        }
+        [HttpGet("GetByCategoryId/{id}")]
+        public JsonResult GetByCategory(int id)
+        {
+            var category=_categoryService.GetById(id);
+            var categoryMapper= _mapper.Map<Category>(category);
+            var result = new ResultDTO<Category>()
+            {
+                Data = categoryMapper,
+                Message = Message.CategoryListed,
                 Status = true
             };
             return Json(result);
