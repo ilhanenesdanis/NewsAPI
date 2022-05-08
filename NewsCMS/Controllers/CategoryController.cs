@@ -59,5 +59,21 @@ namespace NewsCMS.Controllers
             var model = JsonConvert.DeserializeObject<ResultDTO<ListCategoryDto>>(_apiHandler.GetAPI(url));
             return Json(model.Data);
         }
+        public JsonResult UpdateCategory(int id,string Name)
+        {
+            var url= _configuration["ApiUrl"] + "" + ReuqestUrl.UpdateCategory;
+            var Cateogryurl = _configuration["ApiUrl"] + "" + ReuqestUrl.GetByCategory + id;
+            var model = JsonConvert.DeserializeObject<ResultDTO<ListCategoryDto>>(_apiHandler.GetAPI(Cateogryurl));
+            AddCategoryDTO category = new AddCategoryDTO()
+            {
+                Id = id,
+                IsActive = model.Data.IsActive,
+                Name = Name,
+                UpdateDate = DateTime.Now,
+                LanguageId=model.Data.LanguageId
+            };
+            var post = _apiHandler.PostWithModel(category, url);
+            return Json(1);
+        }
     }
 }

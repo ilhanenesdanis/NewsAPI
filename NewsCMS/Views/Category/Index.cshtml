@@ -13,9 +13,11 @@
                 </div>
                 <div class="col-md-7">
                     <input type="text" class="form-control" id="Name" placeholder="Kategori Adı">
+                    <input type="hidden" id="CategoryId" />
                 </div>
                 <div class="col-md-2 pt-1">
-                    <button type="button" onclick="AddCategory()" class="btn btn-info btn-fw">Ekle</button>
+                    <button type="button" onclick="AddCategory()" id="AddBtn" class="btn btn-info btn-fw">Ekle</button>
+                    <button type="button" onclick="EditCategory()" style="display:none;" id="EditCategory" class="btn btn-warning btn-fw">Düzenle</button>
                 </div>
             </div>
         </div>
@@ -39,7 +41,7 @@
                                 <tr>
                                     <td> @item.Name </td>
                                     <td> <button type="button" class="btn btn-info btn-fw">Listele</button> </td>
-                                    <td> <button type="button" class="btn btn-warning  btn-fw">Düzenle</button> </td>
+                                    <td> <button type="button" onclick="EditBtn(@item.Id)" class="btn btn-warning  btn-fw">Düzenle</button> </td>
                                     <td>
                                         @if (item.IsActive == true)
                                         {
@@ -86,13 +88,13 @@
                   <td><button type="button" class="${Style}">${Text}</button></td>
                 </tr>`
                 $('#TableBody').prepend(html);
+                toastr.success('Ekleme İşlemi Başarılı');
             }
         });
 
     }
 
     function ChangeCategory(id){
-
         $.ajax({
             url:'/Category/ChangeCategoryStatus',
             data:{id:id},
@@ -101,7 +103,6 @@
                     url:'/Category/GetCategory',
                     data:{id:id},
                     success:function(data){
-                        console.log(data);
                         var Style="";
                         var Text=""
                         var isActive=data.isActive;
@@ -115,11 +116,37 @@
                         }
                         $('#btn_'+id).attr('class',Style);
                         $('#btn_'+id).text(Text);
-                        alertify.success('İşlem Başarı İle Gerçekleşti');
+                        toastr.success('İşlem Başarılı');
 
                     }
                 })
 
+            }
+        })
+    }
+    function EditBtn(id){
+        $('#AddBtn').css('display','none');
+        $('#EditCategory').css('display','block');
+        $.ajax({
+            url:'/Category/GetCategory',
+            data:{id:id},
+            success:function(data){
+                $('#Name').val(data.name);
+                $('#CategoryId').val(data.id);
+            }
+        });
+    }
+    function EditCategory(){
+        var Name= $('#Name').val();
+        var id= $('#CategoryId').val();
+        $.ajax({
+            url:'/Category/UpdateCategory',
+            data:{id:id,Name:Name},
+            success:function(){
+                 $('#EditCategory').css('display','none');
+                 $('#AddBtn').css('display','block');
+                 $('#Name').val("");
+                 toastr.success('İşlem Başarılı');
             }
         })
     }

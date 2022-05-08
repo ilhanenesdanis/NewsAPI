@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="shortcut icon" href="~/assets/images/favicon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container-scroller">
@@ -320,6 +321,33 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    @*<script>
+        $(document).ready(function(){
+        toastr.options.timeOut = 1500;
+        toastr.options.positionClass="toast-top-right";
+
+        })
+        </script>*@
+    <script>
+                        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": true,
+          "positionClass": "toast-bottom-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "500",
+          "timeOut": "3000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+    </script>
     @RenderSection("Scripts",required:false);
+
 </body>
 </html>
