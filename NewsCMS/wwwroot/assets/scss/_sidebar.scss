@@ -134,7 +134,7 @@
 
       &.active {
         > .nav-link {
-          background: $sidebar-dark-menu-active-bg;
+          /*background: $sidebar-dark-menu-active-bg;*/
           position: relative;
           &:before {
             content: "";

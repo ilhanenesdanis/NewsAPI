@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DTO;
+using DTO.ListDto;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NewsCMS.ApiHandler;
+using NewsCMS.ApiUrl;
+using Newtonsoft.Json;
 
 namespace NewsCMS.Controllers
 {
@@ -16,7 +20,9 @@ namespace NewsCMS.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var url = _configuration["ApiUrl"] + "" + ReuqestUrl.GetAllTag;
+            var model = JsonConvert.DeserializeObject<ResultDTO<ListTagDto>>(_apiHandler.GetAPI(url));
+            return View(model.DataList);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO.AddOrUpdateDto
 {
-    public class AddTagDTO : BaseDTO
+    public class AddTagDTO
     {
         public int? Id { get; set; }
         public string Name { get; set; }

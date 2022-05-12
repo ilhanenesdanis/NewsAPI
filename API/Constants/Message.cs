@@ -6,6 +6,7 @@
         public static string TagAdded = "Etiket Eklendi";
         public static string TagRemoved = "Etiket Silindi";
         public static string TagListed = "Etiketler Listelendi";
+        public static string TagUpdate = "Etiket Güncellendi";
         //Category
         public static string CategoryAdded = "Yeni Kategori Eklendi";
         public static string CategoryRemoved = "Kategori Silindi";

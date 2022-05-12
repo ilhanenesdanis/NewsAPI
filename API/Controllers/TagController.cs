@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace API.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class TagController : Controller
@@ -40,11 +40,37 @@ namespace API.Controllers
         [HttpPost("AddTag")]
         public JsonResult AddTag(AddTagDTO addTag)
         {
-            var tagMapper=_mapper.Map<Tag>(addTag);
+            var tagMapper = _mapper.Map<Tag>(addTag);
             _tagService.Add(tagMapper);
             var result = new ResultDTO<ListTagDto>()
             {
                 Message = Message.TagAdded,
+                Status = true
+            };
+            return Json(result);
+        }
+        [HttpPost("UpdateTag")]
+        public JsonResult UpdateTag(AddTagDTO addTag)
+        {
+            var tagMapper = _mapper.Map<Tag>(addTag);
+            _tagService.Update(tagMapper);
+            var result = new ResultDTO<Tag>()
+            {
+                Data = tagMapper,
+                Message = Message.TagUpdate,
+                Status = true
+            };
+            return Json(result);
+        }
+        [HttpGet("GetTag/{id}")]
+        public JsonResult GetTag(int id)
+        {
+            var TagResult=_tagService.GetById(id);
+            var tagMapper=_mapper.Map<ListTagDto>(TagResult);
+            var result = new ResultDTO<ListTagDto>()
+            {
+                Data = tagMapper,
+                Message = Message.TagListed,
                 Status = true
             };
             return Json(result);
