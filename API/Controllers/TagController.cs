@@ -42,8 +42,9 @@ namespace API.Controllers
         {
             var tagMapper = _mapper.Map<Tag>(addTag);
             _tagService.Add(tagMapper);
-            var result = new ResultDTO<ListTagDto>()
+            var result = new ResultDTO<Tag>()
             {
+                Data=tagMapper,
                 Message = Message.TagAdded,
                 Status = true
             };

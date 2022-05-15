@@ -12,5 +12,6 @@ namespace DTO.AddOrUpdateDto
         public string Name { get; set; }
         public int LanguageId { get; set; }
         public DateTime? UpdateDate { get; set; }
+        public bool IsActive { get; set; }
     }
 }
